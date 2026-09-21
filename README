@@ -1,1 +1,133 @@
+# AI-Enabled ERP Decision Support
 
+## Project Overview
+
+This project develops an **AI-enabled ERP decision-support framework** designed to support data-driven business decision-making using ERP-style transactional data.
+
+The project explores how artificial intelligence and machine learning can be applied to ERP data to identify patterns, detect exceptions, generate business insights, and support the prediction of potential project cost overruns. The system is designed as a **decision-support tool**, where AI-generated outputs are reviewed and validated by human users rather than being used to make autonomous high-impact decisions.
+
+The project is being developed as part of the **MSIT 5910 Capstone Project** at the University of the People.
+
+## Project Objectives
+
+The main objectives are to:
+
+- Develop a framework for integrating AI and machine learning with ERP-style data.
+- Provide descriptive and trend-based insights from transactional data.
+- Identify unusual or potentially significant ERP transactions and exceptions.
+- Support prediction of potential project cost overruns.
+- Provide explainable, human-reviewable AI outputs.
+- Evaluate the relevance of generated insights using a controlled proof of concept.
+
+## Core Use Cases
+
+The proof of concept focuses on three use cases:
+
+1. **Financial and Project Trend Analysis**  
+   Analyze ERP-style financial and project data to identify trends, patterns, and changes that may require management attention.
+
+2. **ERP Exception and Risk Detection**  
+   Identify unusual transactions, values, or patterns that may represent exceptions requiring further review.
+
+3. **Project Cost-Overrun Prediction**  
+   Use historical project-related data to identify patterns associated with potential cost overruns and provide predictive decision support.
+
+## Proposed Architecture
+
+The planned system follows this high-level flow:
+
+```text
+ERP-Style Data
+(CSV / Synthetic / De-identified Data)
+          |
+          v
+Data Ingestion & Validation
+          |
+          v
+Data Processing & Feature Engineering
+          |
+          v
+Analytics & Machine Learning
+          |
+          v
+Decision Support & Recommendations
+          |
+          v
+Streamlit User Interface
+          |
+          v
+Human Review & Validation
+          |
+          v
+Evaluation & Audit Records
+```
+
+## Human-in-the-Loop Design
+
+The system is designed around human oversight. AI-generated insights and recommendations are presented to users for review rather than being executed automatically.
+
+Human reviewers can:
+
+- Review AI-generated findings.
+- Examine supporting information.
+- Accept or reject recommendations.
+- Override an AI recommendation when appropriate.
+- Provide a basis for the decision where required.
+
+This approach supports transparency, accountability, and responsible use of AI in an ERP decision-support environment.
+
+## Data and Privacy
+
+The project will use **synthetic or appropriately de-identified ERP-style data** for development and evaluation.
+
+Confidential production ERP data will not be used in the proof of concept. The project does not aim to replace an ERP system or automate high-impact business decisions without human review.
+
+## Technology Stack
+
+The planned technology stack includes:
+
+- **Python** – data processing, analytics, and machine learning
+- **Pandas** – data manipulation and analysis
+- **Scikit-learn** – machine learning models
+- **Streamlit** – interactive decision-support interface
+- **Git/GitHub** – source control and version management
+
+## Evaluation
+
+The proof of concept will be evaluated using a controlled set of scenarios to assess the relevance and usefulness of the generated outputs.
+
+The project target is to evaluate at least **30 scenarios** and achieve a minimum of **80% relevant outputs** based on the defined evaluation criteria.
+
+## Project Status
+
+**Current phase:** Architecture and prototype development
+
+The repository is being developed incrementally. Requirements, architecture, source code, testing artifacts, and supporting documentation will be added as the project progresses.
+
+## Repository Structure
+
+The repository will be organized into separate areas for:
+
+- Source code
+- Data
+- Requirements and technical documentation
+- System design artifacts
+- Testing materials
+
+The structure will evolve as the proof of concept is developed.
+
+## Limitations
+
+This project is a limited proof of concept and is not intended to:
+
+- Replace an enterprise ERP system.
+- Use confidential production ERP data.
+- Make autonomous high-impact business decisions.
+- Provide a complete enterprise-scale AI implementation.
+
+## Author
+
+**Jehanzaib Bhatti**
+
+MSIT 5910 Capstone Project  
+University of the People
