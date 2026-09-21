@@ -27,6 +27,7 @@ flowchart TD
     G --> H["Evaluation & Audit Records"]
 
     G -. "Review feedback" .-> E
+```
 
 ## 3. Major Components
 
