@@ -8,63 +8,25 @@ The architecture separates data ingestion, data processing, analytics, machine l
 
 ## 2. System Architecture
 
-```text
-┌─────────────────────────────────────┐
-│          ERP-Style Data             │
-│ CSV / Synthetic / De-identified     │
-│ Transactional Data                  │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Data Ingestion & Validation   │
-│ File Loading • Schema Checks        │
-│ Missing/Invalid Data Detection      │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│    Data Processing & Feature        │
-│           Engineering               │
-│ Cleaning • Transformation           │
-│ Feature Preparation                 │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│      Analytics & ML Engine          │
-│                                     │
-│ • Trend Analysis                    │
-│ • Exception Detection               │
-│ • Cost-Overrun Prediction           │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│      Decision Support Layer         │
-│ Insights • Predictions •            │
-│ Recommendations                    │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Streamlit User Interface      │
-│ Dashboards • Charts • Alerts        │
-│ Supporting Information              │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Human Review & Validation     │
-│ Accept • Reject • Override          │
-└──────────────────┬──────────────────┘
-                   │
-                   ▼
-┌─────────────────────────────────────┐
-│       Evaluation & Audit Records    │
-│ Scenario Results • Review Actions   │
-└─────────────────────────────────────┘
-```
+```mermaid
+flowchart TD
+    A["ERP-Style Data<br/>CSV / Synthetic / De-identified"] --> B["Data Ingestion & Validation"]
+    B --> C["Data Processing & Feature Engineering"]
+    C --> D["Analytics & Machine Learning Engine"]
+
+    D --> D1["Financial & Project<br/>Trend Analysis"]
+    D --> D2["ERP Exception<br/>Detection"]
+    D --> D3["Project Cost-Overrun<br/>Prediction"]
+
+    D1 --> E["Decision Support Layer"]
+    D2 --> E
+    D3 --> E
+
+    E --> F["Streamlit User Interface"]
+    F --> G["Human Review & Validation<br/>Accept / Reject / Override"]
+    G --> H["Evaluation & Audit Records"]
+
+    G -. "Review feedback" .-> E
 
 ## 3. Major Components
 
