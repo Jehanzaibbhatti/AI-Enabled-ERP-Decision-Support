@@ -69,3 +69,20 @@ Where applicable, testing will also consider:
 Test results will be documented as development progresses. Failed tests, unexpected model behavior, data-quality issues, and other findings will be recorded and addressed where feasible.
 
 The final evaluation will summarize the number of scenarios tested, relevant outputs, identified limitations, and areas requiring further development.
+
+## 9. Completed Unit Test Results
+
+The implemented functional modules were tested using pytest. The completed unit test suite contains 20 tests, and all 20 tests passed successfully.
+
+| Module | Tests | Result |
+|---|---:|---|
+| Audit log | 3 | 3 passed |
+| Data ingestion | 4 | 4 passed |
+| Data processing | 3 | 3 passed |
+| Decision support | 5 | 5 passed |
+| Exception detection | 4 | 4 passed |
+| **Total** | **20** | **20 passed** |
+
+Coverage analysis reported 100% coverage for the exception detection and data processing modules, 94% for the audit log and decision-support modules, and 72% for data ingestion. Overall source coverage was 46%, primarily because the Streamlit application layer was not included in the current unit-test execution.
+
+The initial test execution encountered an import-path issue when the `src` package could not be resolved. This was addressed by adding a `pytest.ini` configuration with the project root on the Python path. The complete test suite subsequently passed without failures.
