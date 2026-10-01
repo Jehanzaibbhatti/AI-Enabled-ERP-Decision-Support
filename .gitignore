@@ -29,3 +29,7 @@ Thumbs.db
 
 # Environment and configuration files
 .env
+
+# Test and coverage artifacts
+.coverage
+.pytest_cache/
