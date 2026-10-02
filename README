@@ -36,30 +36,25 @@ The proof of concept focuses on three use cases:
 
 The planned system follows this high-level flow:
 
-```text
-ERP-Style Data
-(CSV / Synthetic / De-identified Data)
-          |
-          v
-Data Ingestion & Validation
-          |
-          v
-Data Processing & Feature Engineering
-          |
-          v
-Analytics & Machine Learning
-          |
-          v
-Decision Support & Recommendations
-          |
-          v
-Streamlit User Interface
-          |
-          v
-Human Review & Validation
-          |
-          v
-Evaluation & Audit Records
+```mermaid
+flowchart TD
+    A["ERP-Style Data<br/>CSV / Synthetic / De-identified"] --> B["Data Ingestion & Validation"]
+    B --> C["Data Processing & Feature Engineering"]
+    C --> D["Analytics & Machine Learning Engine"]
+
+    D --> D1["Financial & Project<br/>Trend Analysis"]
+    D --> D2["ERP Exception<br/>Detection"]
+    D --> D3["Project Cost-Overrun<br/>Prediction"]
+
+    D1 --> E["Decision Support Layer"]
+    D2 --> E
+    D3 --> E
+
+    E --> F["Streamlit User Interface"]
+    F --> G["Human Review & Validation<br/>Accept / Reject / Override"]
+    G --> H["Evaluation & Audit Records"]
+
+    G -. "Review feedback" .-> E
 ```
 
 ## Human-in-the-Loop Design

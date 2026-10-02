@@ -1,0 +1,4 @@
+Timestamp,Project_ID,Reviewer,AI_Recommendation,Review_Action,Reviewer_Comment
+2026-09-27T00:07:54,PRJ003,Project Manager,Human review required,Accept,Reviewed the exception and confirmed that further monitoring is required.
+2026-09-27T00:09:17,PRJ006,Project Manager,Human review required,Override,Project reviewed against current implementation status; management decision overrides the rule-based recommendation.
+2026-09-27T00:17:49,PRJ008,Project Manager,Human review required,Reject,Exception reviewed and rejected because the current project circumstances do not require additional intervention.

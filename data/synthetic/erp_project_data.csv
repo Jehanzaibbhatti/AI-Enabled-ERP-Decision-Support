@@ -1,0 +1,13 @@
+Project_ID,Project_Name,Cost_Center,Project_Manager,Budget,Actual_Cost,Committed_Cost,Progress_Percent,Planned_Progress_Percent,Project_Status,Risk_Level
+PRJ001,Terminal Systems Upgrade,CC1001,Manager A,2500000,1450000,350000,58,60,In Progress,Low
+PRJ002,Runway Lighting Improvement,CC1002,Manager B,1800000,1250000,420000,62,70,In Progress,Medium
+PRJ003,Airport Security Enhancement,CC1003,Manager C,3200000,2950000,380000,82,75,In Progress,High
+PRJ004,Passenger Processing Upgrade,CC1004,Manager D,2200000,980000,250000,45,48,In Progress,Low
+PRJ005,Airfield Maintenance Equipment,CC1005,Manager E,950000,870000,120000,88,90,In Progress,Medium
+PRJ006,ICT Infrastructure Modernization,CC1006,Manager F,1500000,1420000,180000,72,80,In Progress,High
+PRJ007,Fire Safety System Upgrade,CC1007,Manager G,1200000,620000,150000,55,50,In Progress,Low
+PRJ008,Facilities Energy Optimization,CC1008,Manager H,850000,780000,90000,76,85,In Progress,Medium
+PRJ009,Airport Access Control Upgrade,CC1009,Manager I,1100000,1040000,140000,68,72,In Progress,Medium
+PRJ010,Data Center Expansion,CC1010,Manager J,2800000,2650000,300000,70,65,In Progress,High
+PRJ011,Ground Support Equipment Renewal,CC1011,Manager K,1750000,910000,210000,52,58,In Progress,Medium
+PRJ012,Airport Network Resilience,CC1012,Manager L,1300000,1280000,160000,64,78,In Progress,High
