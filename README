@@ -2,127 +2,132 @@
 
 ## Project Overview
 
-This project develops an **AI-enabled ERP decision-support framework** designed to support data-driven business decision-making using ERP-style transactional data.
+This project is an AI-enabled decision-support prototype for analyzing synthetic ERP-style project data. It validates project data, calculates project and financial performance metrics, identifies projects requiring human review, provides interactive visualizations, and records human review decisions in an audit log.
 
-The project explores how artificial intelligence and machine learning can be applied to ERP data to identify patterns, detect exceptions, generate business insights, and support the prediction of potential project cost overruns. The system is designed as a **decision-support tool**, where AI-generated outputs are reviewed and validated by human users rather than being used to make autonomous high-impact decisions.
+The prototype is designed as a decision-support system rather than an autonomous decision-making system. Human reviewers remain responsible for accepting, rejecting, or overriding recommendations.
 
-The project is being developed as part of the **MSIT 5910 Capstone Project** at the University of the People.
+No confidential or live ERP production data is used in the prototype.
 
-## Project Objectives
+## System Architecture
 
-The main objectives are to:
+Synthetic ERP CSV data flows through the following components:
 
-- Develop a framework for integrating AI and machine learning with ERP-style data.
-- Provide descriptive and trend-based insights from transactional data.
-- Identify unusual or potentially significant ERP transactions and exceptions.
-- Support prediction of potential project cost overruns.
-- Provide explainable, human-reviewable AI outputs.
-- Evaluate the relevance of generated insights using a controlled proof of concept.
+1. Data ingestion and validation
+2. Project metric calculation
+3. Rule-based exception detection
+4. Streamlit decision-support interface
+5. Human review
+6. Persistent audit logging
 
-## Core Use Cases
+## Main Components
 
-The proof of concept focuses on three use cases:
+* `src/data_ingestion/loader.py` - Loads and validates project data.
+* `src/data_processing/processor.py` - Calculates derived project and financial metrics.
+* `src/analytics/exception_detection.py` - Identifies projects requiring review using transparent business rules.
+* `src/decision_support/review.py` - Validates and creates human review records.
+* `src/audit/audit_log.py` - Loads and persists review audit records.
+* `src/app.py` - Provides the Streamlit user interface.
+* `data/synthetic/erp_project_data.csv` - Synthetic ERP-style project dataset.
+* `data/audit/review_audit_log.csv` - Persistent human-review audit log.
+* `docs/architecture/architecture.png` - System architecture figure.
+* `requirements.txt` - Python dependencies.
+* `pytest.ini` - Test configuration.
 
-1. **Financial and Project Trend Analysis**  
-   Analyze ERP-style financial and project data to identify trends, patterns, and changes that may require management attention.
+## Analytical Logic
 
-2. **ERP Exception and Risk Detection**  
-   Identify unusual transactions, values, or patterns that may represent exceptions requiring further review.
+The processing layer calculates:
 
-3. **Project Cost-Overrun Prediction**  
-   Use historical project-related data to identify patterns associated with potential cost overruns and provide predictive decision support.
+* Budget variance
+* Budget utilization percentage
+* Committed cost percentage
+* Progress gap
+* Cost-to-progress ratio
 
-## Proposed Architecture
+The exception-detection component currently uses these configurable thresholds:
 
-The planned system follows this high-level flow:
+* Budget utilization: 90% or higher
+* Progress gap: -10% or lower
+* Cost-to-progress ratio: 1.20 or higher
 
-```mermaid
-flowchart TD
-    A["ERP-Style Data<br/>CSV / Synthetic / De-identified"] --> B["Data Ingestion & Validation"]
-    B --> C["Data Processing & Feature Engineering"]
-    C --> D["Analytics & Machine Learning Engine"]
+Projects meeting one or more conditions are flagged for human review and the applicable reasons are recorded.
 
-    D --> D1["Financial & Project<br/>Trend Analysis"]
-    D --> D2["ERP Exception<br/>Detection"]
-    D --> D3["Project Cost-Overrun<br/>Prediction"]
+## Human Review and Auditability
 
-    D1 --> E["Decision Support Layer"]
-    D2 --> E
-    D3 --> E
+The interface allows a reviewer to select a flagged project and submit one of three actions:
 
-    E --> F["Streamlit User Interface"]
-    F --> G["Human Review & Validation<br/>Accept / Reject / Override"]
-    G --> H["Evaluation & Audit Records"]
+* Accept
+* Reject
+* Override
 
-    G -. "Review feedback" .-> E
+A reviewer name and comment are required. Each submitted review records the timestamp, project ID, reviewer, AI recommendation, review action, and reviewer comment.
+
+The audit log is stored as a CSV file for the prototype.
+
+## Prerequisites
+
+* Python 3.9 or later
+* A Python virtual environment
+* Dependencies listed in `requirements.txt`
+
+## Installation
+
+Create and activate a virtual environment:
+
+```bash
+python3 -m venv .venv
+source .venv/bin/activate
 ```
 
-## Human-in-the-Loop Design
+Install the project dependencies:
 
-The system is designed around human oversight. AI-generated insights and recommendations are presented to users for review rather than being executed automatically.
+```bash
+pip install -r requirements.txt
+```
 
-Human reviewers can:
+## Running the Application
 
-- Review AI-generated findings.
-- Examine supporting information.
-- Accept or reject recommendations.
-- Override an AI recommendation when appropriate.
-- Provide a basis for the decision where required.
+From the project root:
 
-This approach supports transparency, accountability, and responsible use of AI in an ERP decision-support environment.
+```bash
+python -m streamlit run src/app.py
+```
+
+Streamlit will provide the local address for the application.
+
+## Running Tests
+
+Run the complete automated test suite with:
+
+```bash
+pytest -q
+```
+
+The current implementation passes all 21 automated tests.
+
+## Configuration
+
+The current prototype uses local project files for its synthetic dataset and audit log. Exception thresholds are implemented as configurable function parameters in the exception-detection module.
+
+For a production deployment, environment variables or a secure configuration mechanism should be used for deployment-specific settings and secrets rather than storing sensitive values in source code.
+
+## Deployment Considerations
+
+The current prototype is designed and validated for local execution using Streamlit.
+
+A production implementation could use a containerized deployment and a managed cloud or enterprise hosting environment. Such a deployment would require additional controls including authentication and authorization, secure secret management, HTTPS, persistent production storage, monitoring, logging, backup and recovery, and appropriate network security.
+
+These production deployment controls are proposed considerations; they are not claimed to have been implemented in the current prototype.
 
 ## Data and Privacy
 
-The project will use **synthetic or appropriately de-identified ERP-style data** for development and evaluation.
+The project uses synthetic/de-identified ERP-style project data. It does not connect to a live ERP system and does not use confidential production records.
 
-Confidential production ERP data will not be used in the proof of concept. The project does not aim to replace an ERP system or automate high-impact business decisions without human review.
+## Development and Validation
 
-## Technology Stack
+The project includes automated unit tests covering data ingestion and validation, metric processing, exception detection, decision-support review logic, and audit-log functionality.
 
-The planned technology stack includes:
+The test suite currently reports:
 
-- **Python** – data processing, analytics, and machine learning
-- **Pandas** – data manipulation and analysis
-- **Scikit-learn** – machine learning models
-- **Streamlit** – interactive decision-support interface
-- **Git/GitHub** – source control and version management
-
-## Evaluation
-
-The proof of concept will be evaluated using a controlled set of scenarios to assess the relevance and usefulness of the generated outputs.
-
-The project target is to evaluate at least **30 scenarios** and achieve a minimum of **80% relevant outputs** based on the defined evaluation criteria.
-
-## Project Status
-
-**Current phase:** Architecture and prototype development
-
-The repository is being developed incrementally. Requirements, architecture, source code, testing artifacts, and supporting documentation will be added as the project progresses.
-
-## Repository Structure
-
-The repository will be organized into separate areas for:
-
-- Source code
-- Data
-- Requirements and technical documentation
-- System design artifacts
-- Testing materials
-
-The structure will evolve as the proof of concept is developed.
-
-## Limitations
-
-This project is a limited proof of concept and is not intended to:
-
-- Replace an enterprise ERP system.
-- Use confidential production ERP data.
-- Make autonomous high-impact business decisions.
-- Provide a complete enterprise-scale AI implementation.
-
-## Author
-
-**Jehanzaib Bhatti**
-
-MSIT 5910 Capstone Project  
-University of the People
+```text
+21 passed
+```

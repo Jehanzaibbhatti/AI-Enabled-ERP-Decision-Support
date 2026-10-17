@@ -1,5 +1,7 @@
-pandas
-numpy
-scikit-learn
-streamlit
-matplotlib
+# Application dependencies
+pandas==2.3.3
+streamlit==1.50.0
+
+# Testing dependencies
+pytest==8.4.2
+pytest-cov==7.1.0
