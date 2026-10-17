@@ -33,9 +33,11 @@ def detect_exceptions(
                 "Progress is behind plan"
             )
 
+        cost_to_progress_ratio = row["Cost_to_Progress_Ratio"]
+
         if (
-            row["Cost_to_Progress_Ratio"]
-            >= cost_to_progress_threshold
+            pd.notna(cost_to_progress_ratio)
+            and cost_to_progress_ratio >= cost_to_progress_threshold
         ):
             reasons.append(
                 "Cost is high relative to progress"

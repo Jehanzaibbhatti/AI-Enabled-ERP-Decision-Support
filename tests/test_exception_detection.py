@@ -12,9 +12,7 @@ def test_high_budget_utilization_creates_exception():
             "Cost_to_Progress_Ratio": [1.0],
         }
     )
-
     result = detect_exceptions(df)
-
     assert result.loc[0, "Exception_Flag"] == True
     assert "High budget utilization" in result.loc[
         0, "Exception_Reasons"
@@ -30,9 +28,7 @@ def test_progress_gap_creates_exception():
             "Cost_to_Progress_Ratio": [1.0],
         }
     )
-
     result = detect_exceptions(df)
-
     assert result.loc[0, "Exception_Flag"] == True
     assert "Progress is behind plan" in result.loc[
         0, "Exception_Reasons"
@@ -48,9 +44,7 @@ def test_cost_to_progress_ratio_creates_exception():
             "Cost_to_Progress_Ratio": [1.30],
         }
     )
-
     result = detect_exceptions(df)
-
     assert result.loc[0, "Exception_Flag"] == True
     assert "Cost is high relative to progress" in result.loc[
         0, "Exception_Reasons"
@@ -66,8 +60,24 @@ def test_normal_project_has_no_exception():
             "Cost_to_Progress_Ratio": [1.0],
         }
     )
+    result = detect_exceptions(df)
+    assert result.loc[0, "Exception_Flag"] == False
+    assert result.loc[0, "Exception_Reasons"] == ""
+
+
+def test_zero_progress_does_not_crash():
+    df = pd.DataFrame(
+        {
+            "Project_ID": ["PRJ005"],
+            "Budget_Utilization_Percent": [50.0],
+            "Progress_Gap": [-10.0],
+            "Cost_to_Progress_Ratio": [pd.NA],
+        }
+    )
 
     result = detect_exceptions(df)
 
-    assert result.loc[0, "Exception_Flag"] == False
-    assert result.loc[0, "Exception_Reasons"] == ""
+    assert result.loc[0, "Exception_Flag"] == True
+    assert "Progress is behind plan" in result.loc[
+        0, "Exception_Reasons"
+    ]
